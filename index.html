@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Combos Peñafiel</title>
+<script src="https://cdn.jsdelivr.net/npm/zebra-browser-print-min@3.0.216/BrowserPrint-3.0.216.min.js"></script>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f5f7;color:#202124}
@@ -96,15 +97,23 @@ function price(v){
  return Number.isFinite(n)?n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2}):esc(v);
 }
 async function imprimirRollo(){
-  const imgs=[...document.querySelectorAll("#combos img")];
-  await Promise.all(imgs.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
-    img.addEventListener("load",resolve,{once:true});img.addEventListener("error",resolve,{once:true});
-  })));
-  if(!document.querySelector("#combos .combo")){
-    alert("No hay combos para imprimir.");
+  if(typeof BrowserPrint==="undefined"){
+    alert("No se pudo cargar la librería de Zebra Browser Print. Revisa que Browser Print esté instalado y abierto.");
     return;
   }
-  window.print();
+  const combos=[...document.querySelectorAll("#combos .combo")];
+  if(!combos.length){alert("No hay combos para imprimir.");return;}
+  BrowserPrint.getDefaultDevice("printer",function(device){
+    if(!device){alert("Browser Print no tiene una impresora Zebra predeterminada.");return;}
+    const first=combos[0];
+    const text=(first.innerText||"").replace(/\n+/g," | ").replace(/\|\s*$/,"").trim();
+    const safe=text.normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").replace(/[^A-Za-z0-9$.,:;|() /_-]/g," ").replace(/\\s+/g," ").trim();
+    const lines=[];for(let i=0;i<safe.length;i+=42)lines.push(safe.slice(i,i+42));
+    let z="^XA^PW800^LL400^CI28";
+    lines.slice(0,7).forEach((line,i)=>{z+="^FO25,"+(30+i*48)+"^A0N,30,30^FD"+line+"^FS";});
+    z+="^XZ";
+    device.send(z,function(){alert("Prueba enviada a la Zebra.");},function(err){alert("Browser Print no pudo imprimir: "+(err||"error"));});
+  },function(err){alert("Browser Print no pudo conectarse con la Zebra: "+(err||"error"));});
 }
 function card(r,i){
  let m1=get(r,["marca_1","marca 1","marca1"]),m2=get(r,["marca_2","marca 2","marca2"]);
