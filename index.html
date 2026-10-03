@@ -96,12 +96,33 @@ function price(v){
  return Number.isFinite(n)?n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2}):esc(v);
 }
 async function imprimirRollo(){
-  const imgs=[...document.querySelectorAll("#combos img")];
-  await Promise.all(imgs.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
-    img.addEventListener("load",resolve,{once:true});
-    img.addEventListener("error",resolve,{once:true});
-  })));
-  window.print();
+  if(typeof BrowserPrint==="undefined"){
+    alert("No se encontró Zebra Browser Print. Abre Browser Print y vuelve a intentarlo.");
+    return;
+  }
+  try{
+    const defaultDevice=await new Promise((resolve,reject)=>{
+      BrowserPrint.getDefaultDevice("printer",resolve,reject);
+    });
+    if(!defaultDevice){
+      alert("Browser Print está abierto, pero no hay una impresora Zebra seleccionada.");
+      return;
+    }
+    const combos=[...document.querySelectorAll(".combo")];
+    if(!combos.length){alert("No hay combos para imprimir.");return;}
+    const data=[];
+    for(const combo of combos){
+      const imgs=[...combo.querySelectorAll("img")];
+      await Promise.all(imgs.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
+        img.addEventListener("load",resolve,{once:true});img.addEventListener("error",resolve,{once:true});
+      })));
+      data.push("^XA^PW800^LL400^LH0,0^FO20,20^A0N,32,32^FDCOMBO PENAFIEL^FS^FO20,70^A0N,24,24^FDPrecio sugerido^FS^FO20,115^A0N,28,28^FD"+new Date().toLocaleDateString("es-MX")+"^FS^XZ");
+    }
+    defaultDevice.send(data.join("\n"),()=>alert("Impresión enviada a Zebra."),err=>alert("Zebra no pudo recibir la impresión: "+(err?.statusText||err||"error")));
+  }catch(e){
+    console.error(e);
+    alert("No se pudo conectar con Zebra Browser Print: "+(e.message||e));
+  }
 }
 function card(r,i){
  let m1=get(r,["marca_1","marca 1","marca1"]),m2=get(r,["marca_2","marca 2","marca2"]);
@@ -142,6 +163,7 @@ async function cargarCombos(){
 }
 document.addEventListener("DOMContentLoaded",cargarCombos);
 </script>
+<script src="http://localhost:9101/BrowserPrint-3.1.250.min.js"></script>
 <script>
 window.addEventListener("beforeprint",()=>document.body.classList.add("printing"));
 window.addEventListener("afterprint",()=>document.body.classList.remove("printing"));
