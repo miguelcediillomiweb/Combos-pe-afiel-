@@ -54,7 +54,11 @@ main{width:10cm;margin:0}
 <body>
 <header><h1>COMBOS PEÑAFIEL</h1><p>Precios sugeridos · Catálogo digital</p></header>
 <main>
-<div class="controls"><button class="btn" onclick="cargarCombos()">🔄 Actualizar combos</button> <button class="btn" onclick="imprimirRollo()">🖨️ Imprimir rollo térmico</button></div>
+<div class="controls">
+<button class="btn" onclick="cargarCombos()">🔄 Actualizar combos</button>
+<button id="btnPrint" class="btn" type="button">🖨️ Imprimir rollo térmico</button>
+<div id="printStatus" style="margin-top:10px;font-weight:800"></div>
+</div>
 <div id="loading" class="state"><h2>⏳ Cargando combos...</h2><p>Consultando Google Sheets...</p></div>
 <div id="error" class="state hidden"><h2>⚠️ No se pudo cargar la información</h2><p id="errorText"></p></div>
 <div id="empty" class="state hidden"><h2>📋 No hay combos activos</h2><p>Revisa la columna ACTIVO en Google Sheets.</p></div>
@@ -97,6 +101,11 @@ function price(v){
  return Number.isFinite(n)?n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2}):esc(v);
 }
 async function imprimirRollo(){
+  const status=document.getElementById("printStatus");
+  const btn=document.getElementById("btnPrint");
+  if(status) status.textContent="⏳ Iniciando prueba de conexión con Zebra...";
+  if(btn){btn.disabled=true;btn.textContent="⏳ Conectando con Zebra...";}
+
   if(typeof BrowserPrint==="undefined"){
     alert("🔴 Browser Print no está cargado. La página no puede comunicarse con la app Zebra.");
     return;
@@ -130,7 +139,7 @@ async function imprimirRollo(){
     // Si no hay impresora predeterminada, buscamos las Zebra disponibles.
     BrowserPrint.getLocalDevices(function(devices){
       if(!devices || !devices.length){
-        alert("🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.\n\n1. Abre Zebra Browser Print para Android.\n2. Comprueba que tu Zebra Bluetooth aparezca allí.\n3. Regresa aquí y pulsa Imprimir otra vez.");
+        if(status) status.textContent="🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.";\n        if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}\n        alert("🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.\n\n1. Abre Zebra Browser Print para Android.\n2. Comprueba que tu Zebra Bluetooth aparezca allí.\n3. Regresa aquí y pulsa Imprimir otra vez.");
         return;
       }
       if(devices.length===1){
@@ -145,7 +154,7 @@ async function imprimirRollo(){
       alert("🔴 No se pudo consultar las impresoras de Browser Print.\n\n"+(err||"Error desconocido")+"\n\nEsto indica que la página sí cargó la librería, pero la app Browser Print no está respondiendo.");
     },"printer");
   },function(err){
-    alert("🔴 Browser Print no respondió al buscar la impresora.\n\n"+(err||"Error desconocido"));
+    if(status) status.textContent="🔴 Browser Print no respondió al buscar la impresora.";\n    if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}\n    alert("🔴 Browser Print no respondió al buscar la impresora.\n\n"+(err||"Error desconocido"));
   });
 }
 function card(r,i){
