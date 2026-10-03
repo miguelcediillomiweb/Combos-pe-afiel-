@@ -56,7 +56,7 @@ main{width:10cm;margin:0}
 <main>
 <div class="controls">
 <button class="btn" onclick="cargarCombos()">🔄 Actualizar combos</button>
-<button id="btnPrint" class="btn" type="button">🖨️ Imprimir rollo térmico</button>
+<button id="btnPrint" class="btn" type="button" onclick="imprimirRollo()">🖨️ Imprimir rollo térmico</button>
 <div id="printStatus" style="margin-top:10px;font-weight:800"></div>
 </div>
 <div id="loading" class="state"><h2>⏳ Cargando combos...</h2><p>Consultando Google Sheets...</p></div>
@@ -139,7 +139,9 @@ async function imprimirRollo(){
     // Si no hay impresora predeterminada, buscamos las Zebra disponibles.
     BrowserPrint.getLocalDevices(function(devices){
       if(!devices || !devices.length){
-        if(status) status.textContent="🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.";\n        if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}\n        alert("🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.\n\n1. Abre Zebra Browser Print para Android.\n2. Comprueba que tu Zebra Bluetooth aparezca allí.\n3. Regresa aquí y pulsa Imprimir otra vez.");
+        if(status) status.textContent="🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.";
+        if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}
+        alert("🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.\n\n1. Abre Zebra Browser Print para Android.\n2. Comprueba que tu Zebra Bluetooth aparezca allí.\n3. Regresa aquí y pulsa Imprimir otra vez.");
         return;
       }
       if(devices.length===1){
@@ -154,7 +156,9 @@ async function imprimirRollo(){
       alert("🔴 No se pudo consultar las impresoras de Browser Print.\n\n"+(err||"Error desconocido")+"\n\nEsto indica que la página sí cargó la librería, pero la app Browser Print no está respondiendo.");
     },"printer");
   },function(err){
-    if(status) status.textContent="🔴 Browser Print no respondió al buscar la impresora.";\n    if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}\n    alert("🔴 Browser Print no respondió al buscar la impresora.\n\n"+(err||"Error desconocido"));
+    if(status) status.textContent="🔴 Browser Print no respondió al buscar la impresora.";
+    if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}
+    alert("🔴 Browser Print no respondió al buscar la impresora.\n\n"+(err||"Error desconocido"));
   });
 }
 function card(r,i){
