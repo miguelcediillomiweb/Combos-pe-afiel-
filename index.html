@@ -6,55 +6,20 @@
 <title>Combos Peñafiel</title>
 <script src="https://cdn.jsdelivr.net/npm/zebra-browser-print-min@3.0.216/BrowserPrint-3.0.216.min.js"></script>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f5f7;color:#202124}
-header{text-align:center;background:#fff;padding:25px 15px;border-bottom:1px solid #ddd}
-h1{margin:0;font-size:clamp(28px,6vw,44px);font-weight:900}header p{margin:7px 0 0;color:#666}
-main{width:min(1200px,calc(100% - 24px));margin:24px auto 45px}
-.controls{text-align:center;margin-bottom:22px}.btn{border:0;border-radius:30px;background:#111;color:#fff;padding:12px 22px;font-weight:800;cursor:pointer}
-.state{text-align:center;background:#fff;padding:35px 18px;border-radius:18px;box-shadow:0 6px 20px #0001}.state h2{margin:0 0 8px}.state p{margin:0;color:#666}.hidden{display:none!important}
-#combos{display:flex;flex-direction:column;align-items:center;gap:14px}
-
-.combo{width:100%;height:5cm;max-width:none;background:#fff;border:2px solid #222;overflow:hidden;display:flex;flex-direction:column;position:relative}
-.bar{height:14px;flex:none;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;font-size:11px;font-weight:900;letter-spacing:.7px}
-.bar::after{content:"LLÉVATE TU PROMOCIÓN  •  LLÉVATE TU PROMOCIÓN  •  LLÉVATE TU PROMOCIÓN"}
-
-.content{height:calc(5cm - 28px);padding:2px 10px;display:flex;align-items:center;gap:4px;min-width:0}
-.brands{width:15%;display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;min-width:70px}
-.brand{max-width:125px;max-height:82px;object-fit:contain}.brandText{font-weight:900;font-size:17px;text-transform:uppercase;text-align:center;line-height:1.02}
-.products{width:48%;display:flex;justify-content:center;align-items:center;gap:8px;min-width:0}
-.product{flex:1;max-width:155px;text-align:center}.product img{width:145px;height:145px;object-fit:contain;max-width:100%}
-.productText{width:125px;height:68px;margin:auto;padding:4px;border-radius:5px;background:#f0f2f4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;overflow:hidden}
-.gift{width:20%;padding:3px 7px;border:2px dashed #d5b300;border-radius:7px;background:#fffbea;text-align:center;min-width:110px}
-.giftLabel{font-size:12px;font-weight:900;color:#806d00;text-transform:uppercase;line-height:1}.giftText{font-size:20px;font-weight:900;line-height:1.02}.gift img{width:88px;height:88px;object-fit:contain}
-.priceBox{width:17%;text-align:center;border-left:2px solid #eee;padding-left:6px}
-.priceLabel{font-size:11px;font-weight:900;color:#555}.price{font-size:64px;font-weight:900;line-height:.9;white-space:nowrap}.price small{font-size:26px;vertical-align:top}
-.endCaps{display:none}
-
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f5f7;color:#202124}
+header{text-align:center;background:#fff;padding:25px 15px;border-bottom:1px solid #ddd}h1{margin:0;font-size:clamp(28px,6vw,44px);font-weight:900}header p{margin:7px 0 0;color:#666}
+main{width:min(1200px,calc(100% - 24px));margin:24px auto 45px}.controls{text-align:center;margin-bottom:22px}.btn{border:0;border-radius:30px;background:#111;color:#fff;padding:12px 22px;font-weight:800;cursor:pointer}.state{text-align:center;background:#fff;padding:35px 18px;border-radius:18px;box-shadow:0 6px 20px #0001}.state h2{margin:0 0 8px}.state p{margin:0;color:#666}.hidden{display:none!important}
+#combos{display:flex;flex-direction:column;align-items:center;gap:14px}.combo{width:100%;height:5cm;max-width:none;background:#fff;border:2px solid #222;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.bar{height:14px;flex:none;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;font-size:11px;font-weight:900;letter-spacing:.7px}.bar::after{content:"LLÉVATE TU PROMOCIÓN  •  LLÉVATE TU PROMOCIÓN  •  LLÉVATE TU PROMOCIÓN"}
+.content{height:calc(5cm - 28px);padding:2px 10px;display:flex;align-items:center;gap:4px;min-width:0}.brands{width:15%;display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;min-width:70px}.brand{max-width:125px;max-height:82px;object-fit:contain}.brandText{font-weight:900;font-size:17px;text-transform:uppercase;text-align:center;line-height:1.02}.products{width:48%;display:flex;justify-content:center;align-items:center;gap:8px;min-width:0}.product{flex:1;max-width:155px;text-align:center}.product img{width:145px;height:145px;object-fit:contain;max-width:100%}.productText{width:125px;height:68px;margin:auto;padding:4px;border-radius:5px;background:#f0f2f4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;overflow:hidden}.gift{width:20%;padding:3px 7px;border:2px dashed #d5b300;border-radius:7px;background:#fffbea;text-align:center;min-width:110px}.giftLabel{font-size:12px;font-weight:900;color:#806d00;text-transform:uppercase;line-height:1}.giftText{font-size:20px;font-weight:900;line-height:1.02}.gift img{width:88px;height:88px;object-fit:contain}.priceBox{width:17%;text-align:center;border-left:2px solid #eee;padding-left:6px}.priceLabel{font-size:11px;font-weight:900;color:#555}.price{font-size:64px;font-weight:900;line-height:.9;white-space:nowrap}.price small{font-size:26px;vertical-align:top}
 footer{text-align:center;color:#666;font-size:12px;padding:25px}
-@media(max-width:600px){
-main{width:100%;margin-top:15px}.combo{height:5cm}.content{padding:2px 8px;gap:4px}
-.brands{width:15%;min-width:65px}.brand{max-width:92px;max-height:68px}
-.products{width:48%;gap:5px}.product{max-width:105px}.product img{width:96px;height:96px}.productText{width:78px;height:48px;font-size:10px}
-.gift{width:20%;min-width:85px;padding:2px}.giftLabel{font-size:9px}.giftText{font-size:14px}.gift img{width:62px;height:62px}
-.priceBox{width:17%;padding-left:3px}.priceLabel{font-size:8px}.price{font-size:40px}.price small{font-size:16px}
-.bar{height:13px;font-size:8px}.content{height:calc(5cm - 26px)}
-}
-@media print{
-@page{size:10cm 5cm;margin:0}
-body{background:#fff}
-header,.controls,footer{display:none!important}
-main{width:10cm;margin:0}
-.combo{width:10cm;height:5cm;max-width:10cm;min-width:10cm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;margin:0}
-#combos{gap:0;align-items:flex-start}
-.content{height:calc(5cm - 28px)}
-}
+@media(max-width:600px){main{width:100%;margin-top:15px}.combo{height:5cm}.content{padding:2px 8px;gap:4px}.brands{width:15%;min-width:65px}.brand{max-width:92px;max-height:68px}.products{width:48%;gap:5px}.product{max-width:105px}.product img{width:96px;height:96px}.productText{width:78px;height:48px;font-size:10px}.gift{width:20%;min-width:85px;padding:2px}.giftLabel{font-size:9px}.giftText{font-size:14px}.gift img{width:62px;height:62px}.priceBox{width:17%;padding-left:3px}.priceLabel{font-size:8px}.price{font-size:40px}.price small{font-size:16px}.bar{height:13px;font-size:8px}.content{height:calc(5cm - 26px)}}
+@media print{@page{size:10cm 5cm;margin:0}body{background:#fff}header,.controls,footer{display:none!important}main{width:10cm;margin:0}.combo{width:10cm;height:5cm;max-width:10cm;min-width:10cm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;margin:0}#combos{gap:0;align-items:flex-start}.content{height:calc(5cm - 28px)}}
 </style>
 </head>
 <body>
 <header><h1>COMBOS PEÑAFIEL</h1><p>Precios sugeridos · Catálogo digital</p></header>
-<main>
-<div class="controls">
+<main><div class="controls">
 <button class="btn" onclick="cargarCombos()">🔄 Actualizar combos</button>
 <button id="btnPrint" class="btn" type="button" onclick="imprimirRollo()">🖨️ Imprimir rollo térmico</button>
 <div id="printStatus" style="margin-top:10px;font-weight:800"></div>
@@ -62,8 +27,7 @@ main{width:10cm;margin:0}
 <div id="loading" class="state"><h2>⏳ Cargando combos...</h2><p>Consultando Google Sheets...</p></div>
 <div id="error" class="state hidden"><h2>⚠️ No se pudo cargar la información</h2><p id="errorText"></p></div>
 <div id="empty" class="state hidden"><h2>📋 No hay combos activos</h2><p>Revisa la columna ACTIVO en Google Sheets.</p></div>
-<section id="combos"></section>
-</main>
+<section id="combos"></section></main>
 <footer><strong>Combos Peñafiel</strong><br>Información actualizada desde Google Sheets</footer>
 <script>
 const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRx-Tod-3a_Nz9yBMX0l71qMOoXmzfvctX2wkA_mfMYas56r-PsyCXVx3yfKzYrfxabDrXcdUnYTheo/pub?output=csv";
@@ -71,138 +35,39 @@ const PROXY="https://api.allorigins.win/raw?url=";
 const $=id=>document.getElementById(id);
 function norm(v){return String(v??"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
 function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function csv(text){
- let rows=[],row=[],cell="",q=false;
- for(let i=0;i<text.length;i++){let c=text[i],n=text[i+1];
-  if(c=='"'&&q&&n=='"'){cell+='"';i++}
-  else if(c=='"')q=!q;
-  else if(c==","&&!q){row.push(cell);cell=""}
-  else if((c=="\n"||c=="\r")&&!q){if(c=="\r"&&n=="\n")i++;row.push(cell);cell="";if(row.some(x=>x.trim()))rows.push(row);row=[]}
-  else cell+=c;
- }
- if(cell||row.length){row.push(cell);if(row.some(x=>x.trim()))rows.push(row)}
- if(!rows.length)return[];
- let heads=rows[0].map(norm);
- return rows.slice(1).map(r=>Object.fromEntries(heads.map((h,i)=>[h,(r[i]??"").trim()])));
-}
+function csv(text){let rows=[],row=[],cell="",q=false;for(let i=0;i<text.length;i++){let c=text[i],n=text[i+1];if(c=='"'&&q&&n=='"'){cell+='"';i++}else if(c=='"')q=!q;else if(c==","&&!q){row.push(cell);cell=""}else if((c=="\n"||c=="\r")&&!q){if(c=="\r"&&n=="\n")i++;row.push(cell);cell="";if(row.some(x=>x.trim()))rows.push(row);row=[]}else cell+=c}if(cell||row.length){row.push(cell);if(row.some(x=>x.trim()))rows.push(row)}if(!rows.length)return[];let heads=rows[0].map(norm);return rows.slice(1).map(r=>Object.fromEntries(heads.map((h,i)=>[h,(r[i]??"").trim()])))} 
 function get(r,names){for(const n of names){let k=norm(n);if(k in r)return r[k]}return""}
 function active(v){let x=norm(v);return x===""||["si","s","true","1","activo","x","yes"].includes(x)}
 function isUrl(v){return /^https?:\/\//i.test(String(v||"").trim())}
 function split(v){return String(v||"").split(/\s*(?:\||;|\n)\s*/).map(x=>x.trim()).filter(Boolean)}
 function brand(v){if(!v)return"";return isUrl(v)?'<img class="brand" src="'+esc(v)+'" alt="Marca">':'<div class="brandText">'+esc(v)+'</div>'}
-function products(v1,v2){
- return [...split(v1),...split(v2)].map(v=>isUrl(v)?'<div class="product"><img src="'+esc(v)+'" alt="Producto"></div>':'<div class="product"><div class="productText">'+esc(v)+'</div></div>').join("")
+function products(v1,v2){return [...split(v1),...split(v2)].map(v=>isUrl(v)?'<div class="product"><img src="'+esc(v)+'" alt="Producto"></div>':'<div class="product"><div class="productText">'+esc(v)+'</div></div>').join("")}
+function price(v){let s=String(v||"").replace(/[^0-9,.-]/g,""),n;if(s.includes(",")&&s.includes("."))n=parseFloat(s.lastIndexOf(",")>s.lastIndexOf(".")?s.replace(/\./g,"").replace(",","."):s.replace(/,/g,""));else if(s.includes(",")){let a=s.split(",");n=parseFloat(a.length==2&&a[1].length<=2?a[0]+"."+a[1]:s.replace(/,/g,""))}else n=parseFloat(s);return Number.isFinite(n)?n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2}):esc(v)}
+function imprimirRollo(){
+ const status=$("printStatus"),btn=$("btnPrint");
+ if(status)status.textContent="⏳ Iniciando conexión con Zebra...";
+ if(btn){btn.disabled=true;btn.textContent="⏳ Conectando con Zebra...";}
+ if(typeof BrowserPrint==="undefined"){alert("🔴 Browser Print no está cargado.");if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}return;}
+ const enviar=(device)=>{
+  if(!device){alert("🔴 No se encontró la Zebra.");if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}return;}
+  const nombre=device.name||device.deviceName||"Zebra";
+  if(status)status.textContent="🟢 Zebra encontrada. Enviando etiqueta mínima...";
+  const zpl="^XA^PW400^LL240^FO40,45^A0N,45,45^FDPRUEBA ZEBRA^FS^FO40,110^A0N,30,30^FDConexion OK^FS^XZ";
+  device.send(zpl,
+   function(){if(status)status.textContent="✅ Etiqueta enviada a "+nombre;alert("✅ Etiqueta mínima enviada a la Zebra.");if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}},
+   function(err){if(status)status.textContent="🔴 Error al enviar a Zebra: "+(err||"broken pipe");alert("🔴 La Zebra fue encontrada, pero rechazó la etiqueta de prueba.\n\n"+(err||"Error desconocido"));if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}}
+  );
+ };
+ BrowserPrint.getDefaultDevice("printer",function(device){
+  if(device){enviar(device);return;}
+  BrowserPrint.getLocalDevices(function(devices){
+   if(!devices||!devices.length){alert("🔴 Browser Print no encuentra ninguna Zebra.");if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}return;}
+   enviar(devices[0]);
+  },function(err){alert("🔴 No se pudieron consultar las impresoras.\n\n"+(err||"Error desconocido"));if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}},"printer");
+ },function(err){alert("🔴 Browser Print no respondió.\n\n"+(err||"Error desconocido"));if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}});
 }
-function price(v){
- let s=String(v||"").replace(/[^0-9,.-]/g,""),n;
- if(s.includes(",")&&s.includes("."))n=parseFloat(s.lastIndexOf(",")>s.lastIndexOf(".")?s.replace(/\./g,"").replace(",","."):s.replace(/,/g,""));
- else if(s.includes(",")){let a=s.split(",");n=parseFloat(a.length==2&&a[1].length<=2?a[0]+"."+a[1]:s.replace(/,/g,""))}
- else n=parseFloat(s);
- return Number.isFinite(n)?n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2}):esc(v);
-}
-async function imprimirRollo(){
-  const status=document.getElementById("printStatus");
-  const btn=document.getElementById("btnPrint");
-  if(status) status.textContent="⏳ Iniciando prueba de conexión con Zebra...";
-  if(btn){btn.disabled=true;btn.textContent="⏳ Conectando con Zebra...";}
-
-  if(typeof BrowserPrint==="undefined"){
-    alert("🔴 Browser Print no está cargado. La página no puede comunicarse con la app Zebra.");
-    return;
-  }
-  const combos=[...document.querySelectorAll("#combos .combo")];
-  if(!combos.length){alert("No hay combos para imprimir.");return;}
-
-  const enviarPrueba=(device)=>{
-    if(!device){
-      alert("🟡 Browser Print respondió, pero no encontró una Zebra disponible. Abre Zebra Browser Print para Android y verifica que la impresora aparezca ahí.");
-      return;
-    }
-    const nombre=device.name||device.deviceName||"Zebra detectada";
-    const first=combos[0];
-    const text=(first.innerText||"").replace(/\n+/g," | ").replace(/\|\s*$/,"").trim();
-    const safe=text.normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").replace(/[^A-Za-z0-9$.,:;|() /_-]/g," ").replace(/\\s+/g," ").trim();
-    const lines=[];for(let i=0;i<safe.length;i+=42)lines.push(safe.slice(i,i+42));
-    let z="^XA^PW800^LL400^CI28";
-    lines.slice(0,7).forEach((line,i)=>{z+="^FO25,"+(30+i*48)+"^A0N,30,30^FD"+line+"^FS";});
-    z+="^XZ";
-    alert("🟢 Zebra detectada: "+nombre+"\n\nEnviando prueba...");
-    device.send(z,function(){alert("✅ Prueba enviada a la Zebra: "+nombre);},function(err){alert("🔴 La Zebra fue detectada, pero rechazó la impresión.\n\n"+(err||"Error desconocido"));});
-  };
-
-  BrowserPrint.getDefaultDevice("printer",function(device){
-    if(device){
-      enviarPrueba(device);
-      return;
-    }
-
-    // Si no hay impresora predeterminada, buscamos las Zebra disponibles.
-    BrowserPrint.getLocalDevices(function(devices){
-      if(!devices || !devices.length){
-        if(status) status.textContent="🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.";
-        if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}
-        alert("🔴 Browser Print está cargado, pero no encuentra ninguna Zebra.\n\n1. Abre Zebra Browser Print para Android.\n2. Comprueba que tu Zebra Bluetooth aparezca allí.\n3. Regresa aquí y pulsa Imprimir otra vez.");
-        return;
-      }
-      if(devices.length===1){
-        enviarPrueba(devices[0]);
-        return;
-      }
-      const lista=devices.map((d,i)=>(i+1)+". "+(d.name||d.deviceName||"Zebra")).join("\n");
-      const seleccion=prompt("🖨️ Se encontraron varias impresoras:\n\n"+lista+"\n\nEscribe el número de la Zebra que quieres usar:");
-      const idx=parseInt(seleccion,10)-1;
-      if(Number.isInteger(idx) && devices[idx]) enviarPrueba(devices[idx]);
-    },function(err){
-      alert("🔴 No se pudo consultar las impresoras de Browser Print.\n\n"+(err||"Error desconocido")+"\n\nEsto indica que la página sí cargó la librería, pero la app Browser Print no está respondiendo.");
-    },"printer");
-  },function(err){
-    if(status) status.textContent="🔴 Browser Print no respondió al buscar la impresora.";
-    if(btn){btn.disabled=false;btn.textContent="🖨️ Imprimir rollo térmico";}
-    alert("🔴 Browser Print no respondió al buscar la impresora.\n\n"+(err||"Error desconocido"));
-  });
-}
-function card(r,i){
- let m1=get(r,["marca_1","marca 1","marca1"]),m2=get(r,["marca_2","marca 2","marca2"]);
- let p1=get(r,["productos_1","productos 1","productos1"]),p2=get(r,["productos_2","productos 2","productos2"]);
- let tl=get(r,["texto_regalo","texto regalo","textoregalo"]),g=get(r,["regalo"]);
- let pc=get(r,["precio_combo","precio combo","preciocombo","precio"]);
- let gift="";
- if(tl||g)gift='<div class="gift"><div class="giftLabel">'+esc(tl||"REGALO")+'</div>'+(g?(isUrl(g)?'<img src="'+esc(g)+'" alt="Regalo">':'<div class="giftText">'+esc(g)+'</div>'):"")+'</div>';
- return '<article class="combo"><div class="bar topBar"></div><div class="content"><div class="brands">'+brand(m1)+brand(m2)+'</div><div class="products">'+products(p1,p2)+'</div>'+gift+'<div class="priceBox"><div class="priceLabel">PRECIO COMBO</div><div class="price"><small>$</small>'+price(pc)+'</div></div></div><div class="bar bottomBar"></div></article>';
-}
-async function cargarCombos(){
- $("loading").classList.remove("hidden");$("error").classList.add("hidden");$("empty").classList.add("hidden");$("combos").innerHTML="";
- const base=CSV_URL;
- const urls=[base,PROXY+encodeURIComponent(base),"https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(base)];
- try{
-  let text="",lastError="";
-  for(const url of urls){
-   try{
-    const controller=new AbortController();
-    const timer=setTimeout(()=>controller.abort(),10000);
-    const res=await fetch(url,{cache:"no-store",signal:controller.signal});
-    clearTimeout(timer);
-    if(!res.ok)throw new Error("HTTP "+res.status);
-    const candidate=await res.text();
-    if(!candidate.trim()||candidate.trim().startsWith("<"))throw new Error("respuesta no válida");
-    text=candidate;break;
-   }catch(e){lastError=e.name==="AbortError"?"tiempo agotado":(e.message||"error de conexión");}
-  }
-  if(!text)throw new Error("No se pudo conectar con Google Sheets ("+lastError+").");
-  const rows=csv(text);
-  if(!rows.length)throw new Error("El CSV no contiene filas de datos.");
-  const activeKey=Object.keys(rows[0]).find(k=>["activo","activa","active"].includes(norm(k)));
-  const activeRows=activeKey?rows.filter(r=>active(r[activeKey])):rows;
-  $("loading").classList.add("hidden");
-  if(!activeRows.length){$("empty").classList.remove("hidden");return}
-  activeRows.forEach((r,i)=>$("combos").insertAdjacentHTML("beforeend",card(r,i+1)));
- }catch(e){console.error(e);$("loading").classList.add("hidden");$("error").classList.remove("hidden");$("errorText").textContent=e.message||"Error desconocido."}
-}
+function card(r){let m1=get(r,["marca_1","marca 1","marca1"]),m2=get(r,["marca_2","marca 2","marca2"]),p1=get(r,["productos_1","productos 1","productos1"]),p2=get(r,["productos_2","productos 2","productos2"]),tl=get(r,["texto_regalo","texto regalo","textoregalo"]),g=get(r,["regalo"]),pc=get(r,["precio_combo","precio combo","preciocombo","precio"]);let gift="";if(tl||g)gift='<div class="gift"><div class="giftLabel">'+esc(tl||"REGALO")+'</div>'+(g?(isUrl(g)?'<img src="'+esc(g)+'" alt="Regalo">':'<div class="giftText">'+esc(g)+'</div>'):"")+'</div>';return '<article class="combo"><div class="bar"></div><div class="content"><div class="brands">'+brand(m1)+brand(m2)+'</div><div class="products">'+products(p1,p2)+'</div>'+gift+'<div class="priceBox"><div class="priceLabel">PRECIO COMBO</div><div class="price"><small>$</small>'+price(pc)+'</div></div></div><div class="bar"></div></article>'}
+async function cargarCombos(){$("loading").classList.remove("hidden");$("error").classList.add("hidden");$("empty").classList.add("hidden");$("combos").innerHTML="";const urls=[CSV_URL,PROXY+encodeURIComponent(CSV_URL),"https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(CSV_URL)];try{let text="",lastError="";for(const url of urls){try{const c=new AbortController(),t=setTimeout(()=>c.abort(),10000),res=await fetch(url,{cache:"no-store",signal:c.signal});clearTimeout(t);if(!res.ok)throw new Error("HTTP "+res.status);const candidate=await res.text();if(!candidate.trim()||candidate.trim().startsWith("<"))throw new Error("respuesta no válida");text=candidate;break}catch(e){lastError=e.name==="AbortError"?"tiempo agotado":(e.message||"error de conexión")}}if(!text)throw new Error("No se pudo conectar con Google Sheets ("+lastError+").");const rows=csv(text);if(!rows.length)throw new Error("El CSV no contiene filas de datos.");const activeKey=Object.keys(rows[0]).find(k=>["activo","activa","active"].includes(norm(k)));const activeRows=activeKey?rows.filter(r=>active(r[activeKey])):rows;$("loading").classList.add("hidden");if(!activeRows.length){$("empty").classList.remove("hidden");return}activeRows.forEach(r=>$("combos").insertAdjacentHTML("beforeend",card(r)))}catch(e){console.error(e);$("loading").classList.add("hidden");$("error").classList.remove("hidden");$("errorText").textContent=e.message||"Error desconocido."}}
 document.addEventListener("DOMContentLoaded",cargarCombos);
 </script>
-<script>
-window.addEventListener("beforeprint",()=>document.body.classList.add("printing"));
-window.addEventListener("afterprint",()=>document.body.classList.remove("printing"));
-</script>
-</body>
-</html>
+</body></html>
