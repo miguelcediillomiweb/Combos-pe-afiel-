@@ -114,18 +114,27 @@ function card(r,i){
 }
 async function cargarCombos(){
  $("loading").classList.remove("hidden");$("error").classList.add("hidden");$("empty").classList.add("hidden");$("combos").innerHTML="";
+ const base=CSV_URL;
+ const urls=[base,PROXY+encodeURIComponent(base),"https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(base)];
  try{
-  const u=CSV_URL+"&t="+Date.now();
-  let res;
-  try{res=await fetch(u,{cache:"no-store"})}catch(e){}
-  if(!res||!res.ok){res=await fetch(PROXY+encodeURIComponent(u),{cache:"no-store"})}
-  if(!res.ok)throw new Error("No se pudo leer Google Sheets (HTTP "+res.status+").");
-  const text=await res.text();
-  if(!text.trim()||text.trim().startsWith("<"))throw new Error("Google Sheets no devolvió un CSV válido.");
+  let text="",lastError="";
+  for(const url of urls){
+   try{
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),10000);
+    const res=await fetch(url,{cache:"no-store",signal:controller.signal});
+    clearTimeout(timer);
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const candidate=await res.text();
+    if(!candidate.trim()||candidate.trim().startsWith("<"))throw new Error("respuesta no válida");
+    text=candidate;break;
+   }catch(e){lastError=e.name==="AbortError"?"tiempo agotado":(e.message||"error de conexión");}
+  }
+  if(!text)throw new Error("No se pudo conectar con Google Sheets ("+lastError+").");
   const rows=csv(text);
   if(!rows.length)throw new Error("El CSV no contiene filas de datos.");
-  const activeKey = Object.keys(rows[0]).find(k=>["activo","activa","active"].includes(norm(k)));
-  const activeRows=activeKey ? rows.filter(r=>active(r[activeKey])) : rows;
+  const activeKey=Object.keys(rows[0]).find(k=>["activo","activa","active"].includes(norm(k)));
+  const activeRows=activeKey?rows.filter(r=>active(r[activeKey])):rows;
   $("loading").classList.add("hidden");
   if(!activeRows.length){$("empty").classList.remove("hidden");return}
   activeRows.forEach((r,i)=>$("combos").insertAdjacentHTML("beforeend",card(r,i+1)));
