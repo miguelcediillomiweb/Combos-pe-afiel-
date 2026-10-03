@@ -124,7 +124,8 @@ async function cargarCombos(){
   if(!text.trim()||text.trim().startsWith("<"))throw new Error("Google Sheets no devolvió un CSV válido.");
   const rows=csv(text);
   if(!rows.length)throw new Error("El CSV no contiene filas de datos.");
-  const activeKey = Object.keys(rows[0]).find(k=>["activo","activa","active"].includes(norm(k)));\n  const activeRows=activeKey ? rows.filter(r=>active(r[activeKey])) : rows;
+  const activeKey = Object.keys(rows[0]).find(k=>["activo","activa","active"].includes(norm(k)));
+  const activeRows=activeKey ? rows.filter(r=>active(r[activeKey])) : rows;
   $("loading").classList.add("hidden");
   if(!activeRows.length){$("empty").classList.remove("hidden");return}
   activeRows.forEach((r,i)=>$("combos").insertAdjacentHTML("beforeend",card(r,i+1)));
